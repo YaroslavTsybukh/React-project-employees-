@@ -16,11 +16,15 @@ class EmployeesAddForm extends Component{
     }
     onSubmitForm = (e) => {
         e.preventDefault()
-        this.props.addEmployee(this.state.name , this.state.salary)
-        this.setState({
-            name: "",
-            salary: ""
-        })
+        if(this.state.name.length >= 1 || this.state.salary.length >= 1) {
+            this.props.addEmployee(this.state.name, this.state.salary)
+            this.setState({
+                name: "",
+                salary: ""
+            })
+        }else{
+            throw new Error("Ошибка")
+        }
     }
     render() {
         const {name , salary} = this.state
